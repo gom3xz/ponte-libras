@@ -1,1 +1,0 @@
-Coloque aqui as imagens dos sinais: a.png, b.png ... z.png (nome da letra em minusculo).
