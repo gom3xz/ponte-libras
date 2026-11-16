@@ -569,3 +569,101 @@ button.principal:hover {
         grid-template-columns: repeat(7, 1fr);
     }
 }
+
+
+/* ---------- PAINEL DA LETRA (alfabeto) ---------- */
+
+.painel-letra {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.painel-letra img {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+}
+
+.painel-letra strong {
+    font-size: 90px;
+    line-height: 1;
+    color: var(--azul);
+}
+
+.painel-letra p {
+    font-size: 16px;
+    color: var(--cinza);
+}
+
+/* ---------- CÂMERA (tradução ao vivo) ---------- */
+
+.camera-secao {
+    margin-top: 20px;
+}
+
+.camera-grade {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.area-camera {
+    background: var(--azul-escuro);
+    border-radius: 10px;
+    min-height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    margin-bottom: 8px;
+}
+
+.area-camera canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+.camera-aviso {
+    color: #b8c3d9;
+    font-size: 14px;
+}
+
+/* ---------- GRÁFICO (estatísticas) ---------- */
+
+.barra-linha {
+    display: grid;
+    grid-template-columns: 100px 1fr 90px;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.barra-fundo {
+    background: var(--fundo);
+    border-radius: 6px;
+    height: 18px;
+}
+
+.barra {
+    background: var(--azul);
+    height: 100%;
+    border-radius: 6px;
+}
+
+.barra-linha small {
+    color: var(--cinza);
+}
+
+@media (max-width: 900px) {
+    .camera-grade {
+        grid-template-columns: 1fr;
+    }
+
+    .painel-letra {
+        flex-direction: column;
+        text-align: center;
+    }
+}

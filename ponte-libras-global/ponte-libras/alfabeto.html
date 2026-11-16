@@ -18,7 +18,7 @@
         <nav>
             <a href="index.html">💬 Tradução ao vivo</a>
             <a href="alfabeto.html" class="ativo">🔤 Alfabeto em Libras</a>
-            <a href="calculadora.html">🐍 Calculadora Python</a>
+            <a href="estatisticas.html">📊 Estatísticas (Python)</a>
         </nav>
 
         <div class="status"><span class="bolinha"></span> Sistema online</div>
@@ -39,6 +39,12 @@
                 <button class="principal" onclick="soletrar()">Soletrar</button>
             </div>
             <p id="letraAtual" class="detectado" style="margin-top: 12px;">A letra da vez aparece aqui.</p>
+        </section>
+
+        <section class="cartao painel-letra" aria-live="polite">
+            <img id="painelImg" src="" alt="" style="display:none">
+            <strong id="painelLetra">?</strong>
+            <p id="painelTexto">Clique em uma letra para ver o sinal em Libras.</p>
         </section>
 
         <section style="margin-top: 20px;">

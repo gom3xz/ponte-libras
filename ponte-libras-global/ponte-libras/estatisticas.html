@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ponte Libras - Calculadora Python</title>
+    <title>Ponte Libras - Estatísticas</title>
     <link rel="stylesheet" href="css/style.css">
 
     <!-- PyScript: deixa rodar Python dentro do navegador -->
@@ -22,7 +22,7 @@
         <nav>
             <a href="index.html">💬 Tradução ao vivo</a>
             <a href="alfabeto.html">🔤 Alfabeto em Libras</a>
-            <a href="calculadora.html" class="ativo">🐍 Calculadora Python</a>
+            <a href="estatisticas.html" class="ativo">📊 Estatísticas (Python)</a>
         </nav>
 
         <div class="status"><span class="bolinha"></span> Sistema online</div>
@@ -31,48 +31,33 @@
     <main>
         <header class="topo">
             <div>
-                <h1>Calculadora em Python</h1>
-                <p>Funções de 1º e 2º grau feitas em Python rodando no site</p>
+                <h1>Estatísticas da conversa</h1>
+                <p>Python calcula as palavras mais usadas e mostra em gráfico</p>
             </div>
             <span class="selo" id="statusPython">Carregando Python...</span>
         </header>
 
         <section class="cartoes">
-
-            <!-- 1º GRAU -->
             <article class="cartao">
-                <h2>Função do 1º grau</h2>
-                <p class="formula" style="margin-top: 10px;">f(x) = a·x + b</p>
-
-                <div class="campos">
-                    <label>a <input type="number" id="a1" value="2"></label>
-                    <label>b <input type="number" id="b1" value="4"></label>
-                    <label>x <input type="number" id="x1" value="3"></label>
+                <h2>📊 Palavras mais usadas</h2>
+                <div id="grafico" style="margin-top: 14px;">
+                    <p class="vazio">Carregando...</p>
                 </div>
-
-                <button class="principal microfone" py-click="calcular_primeiro_grau">Calcular</button>
-                <div id="resultado1" class="resultado">O resultado aparece aqui.</div>
+                <button class="principal microfone" py-click="atualizar">Atualizar</button>
             </article>
 
-            <!-- 2º GRAU -->
             <article class="cartao">
-                <h2>Função do 2º grau</h2>
-                <p class="formula" style="margin-top: 10px;">f(x) = a·x² + b·x + c</p>
-
-                <div class="campos">
-                    <label>a <input type="number" id="a2" value="1"></label>
-                    <label>b <input type="number" id="b2" value="-5"></label>
-                    <label>c <input type="number" id="c2" value="6"></label>
+                <h2>🔢 Números da conversa</h2>
+                <div id="numeros" class="resultado" style="margin-top: 14px;">Carregando...</div>
+                <div class="botoes" style="margin-top: 12px;">
+                    <button py-click="zerar">🗑 Zerar dados</button>
                 </div>
-
-                <button class="principal microfone" py-click="calcular_segundo_grau">Calcular (Bhaskara)</button>
-                <div id="resultado2" class="resultado">O resultado aparece aqui.</div>
             </article>
         </section>
     </main>
 
-    <!-- o código Python fica no arquivo python/calculadora.py -->
-    <script type="py" src="python/calculadora.py"></script>
+    <!-- o código Python fica no arquivo python/estatisticas.py -->
+    <script type="py" src="python/estatisticas.py"></script>
 
     <div vw class="enabled">
         <div vw-access-button class="active"></div>

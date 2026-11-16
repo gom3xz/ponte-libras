@@ -8,7 +8,6 @@
 </head>
 <body>
 
-    <!-- MENU LATERAL -->
     <aside class="menu">
         <div class="logo">
             <span class="logo-icone">🤟</span>
@@ -19,13 +18,12 @@
         <nav>
             <a href="index.html" class="ativo">💬 Tradução ao vivo</a>
             <a href="alfabeto.html">🔤 Alfabeto em Libras</a>
-            <a href="calculadora.html">🐍 Calculadora Python</a>
+            <a href="estatisticas.html">📊 Estatísticas (Python)</a>
         </nav>
 
         <div class="status"><span class="bolinha"></span> Sistema online</div>
     </aside>
 
-    <!-- CONTEÚDO -->
     <main>
         <header class="topo">
             <div>
@@ -37,7 +35,6 @@
 
         <section class="cartoes">
 
-            <!-- LADO 1: quem NÃO fala -->
             <article class="cartao">
                 <div class="cartao-topo">
                     <h2>Pessoa que sinaliza → Voz</h2>
@@ -45,14 +42,10 @@
                 </div>
 
                 <h3>Frases rápidas</h3>
-                <div id="frases" class="frases">
-                    <!-- os botões são criados pelo JavaScript -->
-                </div>
+                <div id="frases" class="frases"></div>
 
                 <h3>Soletrar (alfabeto manual)</h3>
-                <div id="letras" class="letras">
-                    <!-- as letras são criadas pelo JavaScript -->
-                </div>
+                <div id="letras" class="letras"></div>
 
                 <div class="palavra-montada">
                     <span id="palavra" aria-live="polite">Toque nas letras...</span>
@@ -65,7 +58,6 @@
                 </div>
             </article>
 
-            <!-- LADO 2: quem ouve e fala -->
             <article class="cartao">
                 <div class="cartao-topo">
                     <h2>Pessoa ouvinte → Libras</h2>
@@ -95,7 +87,51 @@
             </article>
         </section>
 
-        <!-- NÚMEROS -->
+        <section class="cartao camera-secao">
+            <div class="cartao-topo">
+                <h2>📷 Câmera → Legenda (sinais em Libras)</h2>
+                <span class="ao-vivo verde" id="statusCamera">● DESLIGADA</span>
+            </div>
+
+            <div class="camera-grade">
+                <div>
+                    <div id="areaCamera" class="area-camera">
+                        <p class="camera-aviso">A câmera aparece aqui.</p>
+                    </div>
+                    <p id="palpite" class="dica">Palpite atual: -</p>
+                    <button id="botaoCamera" class="microfone" onclick="alternarCamera()">📷 Ligar câmera</button>
+
+                    <div class="treino-libras">
+                        <h3>Treinar sinal em Libras</h3>
+                        <p class="dica">Ligue a câmera, digite o sinal, capture amostras e treine o modelo.</p>
+                        <div class="digitar">
+                            <input type="text" id="sinalTreino" placeholder="Ex.: A ou SIM" maxlength="20">
+                            <button type="button" onclick="capturarAmostraLibras()">📸 Capturar</button>
+                        </div>
+                        <div class="botoes">
+                            <button type="button" class="principal" onclick="treinarLibras()">🧠 Treinar</button>
+                            <button type="button" onclick="limparAmostrasLibras()">🗑 Limpar treino</button>
+                        </div>
+                        <p id="infoTreinoLibras" class="dica">Pronto para capturar amostras.</p>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="dica">
+                        Ligue a câmera e faça o sinal na frente dela. Segure o sinal por cerca de
+                        1 segundo até ele entrar na legenda. Tire a mão da câmera para repetir a mesma letra.
+                    </p>
+                    <h3>Legenda</h3>
+                    <p id="legenda" class="detectado" aria-live="polite">A legenda aparece aqui.</p>
+                    <div class="botoes">
+                        <button onclick="espacoLegenda()">␣ Espaço</button>
+                        <button onclick="apagarLegenda()">⌫ Apagar</button>
+                        <button class="principal" onclick="falarLegenda()">🔊 Falar</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section class="numeros">
             <div class="numero">
                 <p>Mensagens</p>
@@ -119,7 +155,6 @@
             </div>
         </section>
 
-        <!-- CONVERSA -->
         <section class="cartao conversa">
             <div class="cartao-topo">
                 <h2>Conversa</h2>
@@ -131,7 +166,6 @@
         </section>
     </main>
 
-    <!-- VLibras: avatar do governo que traduz texto para Libras -->
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>
@@ -140,12 +174,12 @@
     </div>
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
-        // só liga o avatar se o script carregou (precisa de internet)
         if (window.VLibras) {
             new window.VLibras.Widget('https://vlibras.gov.br/app');
         }
     </script>
 
     <script src="js/script.js"></script>
+    <script src="js/camera.js"></script>
 </body>
 </html>

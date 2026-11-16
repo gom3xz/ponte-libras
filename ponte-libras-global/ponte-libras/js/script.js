@@ -27,6 +27,22 @@ let totalOuvinte = 0;
 let totalPalavras = 0;
 let ouvindo = false;
 
+// histórico da conversa (o Python da página de estatísticas lê isto)
+let historico = [];
+try {
+    historico = JSON.parse(localStorage.getItem('ponteLibrasHistorico') || '[]');
+} catch (erro) {
+    historico = [];
+}
+
+function salvarHistorico() {
+    try {
+        localStorage.setItem('ponteLibrasHistorico', JSON.stringify(historico));
+    } catch (erro) {
+        console.log('Não foi possível salvar o histórico.');
+    }
+}
+
 
 // ---------- MONTAR A TELA ----------
 
@@ -246,6 +262,9 @@ function adicionarMensagem(quem, texto) {
     lista.appendChild(mensagem);
     lista.scrollTop = lista.scrollHeight;
 
+    historico.push({ quem: quem, texto: texto });
+    salvarHistorico();
+
     totalMensagens++;
     totalPalavras = totalPalavras + contarPalavras(texto);
     atualizarNumeros();
@@ -295,6 +314,8 @@ function limparConversa() {
         totalSinaliza = 0;
         totalOuvinte = 0;
         totalPalavras = 0;
+        historico = [];
+        salvarHistorico();
         document.getElementById('mensagens').innerHTML = '<p class="vazio">A conversa vai aparecer aqui.</p>';
         atualizarNumeros();
     }

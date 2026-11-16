@@ -49,11 +49,21 @@ function destacar(letra) {
     }
 
     const cartao = document.getElementById('letra-' + letra);
-    if (cartao) {
-        cartao.classList.add('destaque');
-        cartao.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        document.getElementById('letraAtual').innerText = 'Letra: ' + letra;
+    if (!cartao) {
+        return;
     }
+    cartao.classList.add('destaque');
+
+    // painel grande: letra + sinal em Libras
+    const imagem = document.getElementById('painelImg');
+    imagem.style.display = 'block';
+    imagem.onerror = function () { imagem.style.display = 'none'; };
+    imagem.src = 'img/alfabeto/' + letra.toLowerCase() + '.png';
+    imagem.alt = 'Mão fazendo a letra ' + letra + ' em Libras';
+
+    document.getElementById('painelLetra').innerText = letra;
+    document.getElementById('painelTexto').innerText = 'Letra ' + letra + ' em Libras';
+    document.getElementById('letraAtual').innerText = 'Letra: ' + letra;
 }
 
 function soletrar() {
