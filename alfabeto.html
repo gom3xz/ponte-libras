@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponte Libras - Alfabeto</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <aside class="menu">
+        <div class="logo">
+            <span class="logo-icone">🤟</span>
+            <span>Ponte<b>Libras</b></span>
+        </div>
+        <p class="logo-texto">Comunicação entre Libras e Português para quem não consegue falar</p>
+
+        <nav>
+            <a href="index.html">💬 Tradução ao vivo</a>
+            <a href="alfabeto.html" class="ativo">🔤 Alfabeto em Libras</a>
+            <a href="calculadora.html">🐍 Calculadora Python</a>
+        </nav>
+
+        <div class="status"><span class="bolinha"></span> Sistema online</div>
+    </aside>
+
+    <main>
+        <header class="topo">
+            <div>
+                <h1>Alfabeto em Libras</h1>
+                <p>Digite uma palavra e veja letra por letra como soletrar</p>
+            </div>
+        </header>
+
+        <section class="cartao">
+            <h2>Soletrar uma palavra</h2>
+            <div class="digitar" style="margin-top: 12px;">
+                <input type="text" id="palavraSoletrar" placeholder="Ex.: MARIA" maxlength="20">
+                <button class="principal" onclick="soletrar()">Soletrar</button>
+            </div>
+            <p id="letraAtual" class="detectado" style="margin-top: 12px;">A letra da vez aparece aqui.</p>
+        </section>
+
+        <section style="margin-top: 20px;">
+            <div id="grade" class="grade-alfabeto">
+                <!-- os cartões são criados pelo JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        if (window.VLibras) {
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        }
+    </script>
+
+    <script src="js/alfabeto.js"></script>
+</body>
+</html>

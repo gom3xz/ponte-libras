@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ponte Libras - Tradução ao vivo</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- MENU LATERAL -->
+    <aside class="menu">
+        <div class="logo">
+            <span class="logo-icone">🤟</span>
+            <span>Ponte<b>Libras</b></span>
+        </div>
+        <p class="logo-texto">Comunicação entre Libras e Português para quem não consegue falar</p>
+
+        <nav>
+            <a href="index.html" class="ativo">💬 Tradução ao vivo</a>
+            <a href="alfabeto.html">🔤 Alfabeto em Libras</a>
+            <a href="calculadora.html">🐍 Calculadora Python</a>
+        </nav>
+
+        <div class="status"><span class="bolinha"></span> Sistema online</div>
+    </aside>
+
+    <!-- CONTEÚDO -->
+    <main>
+        <header class="topo">
+            <div>
+                <h1>Tradução ao vivo</h1>
+                <p>Comunicação nos dois sentidos: sinais → voz e voz → Libras</p>
+            </div>
+            <span class="selo">Tempo real</span>
+        </header>
+
+        <section class="cartoes">
+
+            <!-- LADO 1: quem NÃO fala -->
+            <article class="cartao">
+                <div class="cartao-topo">
+                    <h2>Pessoa que sinaliza → Voz</h2>
+                    <span class="ao-vivo verde">● AO VIVO</span>
+                </div>
+
+                <h3>Frases rápidas</h3>
+                <div id="frases" class="frases">
+                    <!-- os botões são criados pelo JavaScript -->
+                </div>
+
+                <h3>Soletrar (alfabeto manual)</h3>
+                <div id="letras" class="letras">
+                    <!-- as letras são criadas pelo JavaScript -->
+                </div>
+
+                <div class="palavra-montada">
+                    <span id="palavra" aria-live="polite">Toque nas letras...</span>
+                </div>
+
+                <div class="botoes">
+                    <button onclick="adicionarEspaco()">␣ Espaço</button>
+                    <button onclick="apagarLetra()">⌫ Apagar</button>
+                    <button class="principal" onclick="enviarPalavra()">🔊 Falar</button>
+                </div>
+            </article>
+
+            <!-- LADO 2: quem ouve e fala -->
+            <article class="cartao">
+                <div class="cartao-topo">
+                    <h2>Pessoa ouvinte → Libras</h2>
+                    <span class="ao-vivo azul">● AO VIVO</span>
+                </div>
+
+                <p class="dica">
+                    Aperte o microfone e fale. O texto aparece abaixo e o avatar
+                    (botão azul no canto da tela) traduz para Libras.
+                </p>
+
+                <button id="botaoMicrofone" class="microfone" onclick="ouvir()">🎤 Começar a ouvir</button>
+
+                <div class="onda" id="onda">
+                    <span></span><span></span><span></span><span></span><span></span>
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+
+                <h3>Ou digite</h3>
+                <div class="digitar">
+                    <input type="text" id="textoOuvinte" placeholder="Ex.: Onde está doendo?">
+                    <button class="principal" onclick="enviarTextoOuvinte()">Enviar</button>
+                </div>
+
+                <h3>Texto detectado</h3>
+                <p id="ultimoTextoOuvinte" class="detectado">Nenhuma fala ainda.</p>
+            </article>
+        </section>
+
+        <!-- NÚMEROS -->
+        <section class="numeros">
+            <div class="numero">
+                <p>Mensagens</p>
+                <strong id="totalMensagens">0</strong>
+                <span>na conversa</span>
+            </div>
+            <div class="numero">
+                <p>Da pessoa que sinaliza</p>
+                <strong id="totalSinaliza" class="verde">0</strong>
+                <span>frases enviadas</span>
+            </div>
+            <div class="numero">
+                <p>Da pessoa ouvinte</p>
+                <strong id="totalOuvinte" class="azul">0</strong>
+                <span>frases faladas</span>
+            </div>
+            <div class="numero">
+                <p>Palavras</p>
+                <strong id="totalPalavras">0</strong>
+                <span>trocadas</span>
+            </div>
+        </section>
+
+        <!-- CONVERSA -->
+        <section class="cartao conversa">
+            <div class="cartao-topo">
+                <h2>Conversa</h2>
+                <button onclick="limparConversa()">🗑 Limpar</button>
+            </div>
+            <div id="mensagens">
+                <p class="vazio">A conversa vai aparecer aqui.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- VLibras: avatar do governo que traduz texto para Libras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        // só liga o avatar se o script carregou (precisa de internet)
+        if (window.VLibras) {
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        }
+    </script>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
