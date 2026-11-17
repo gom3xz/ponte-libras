@@ -1,75 +1,90 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ponte Libras - Estatísticas</title>
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- PyScript: deixa rodar Python dentro do navegador -->
-    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
-    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ponte Libras - Estatísticas</title>
+<link rel="stylesheet" href="css/style.css">
+<!-- PyScript: deixa rodar Python dentro do navegador -->
+<link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
 <body>
+<aside class="menu">
+<div class="logo">
+<span class="logo-icone">🤟</span>
+<span>Ponte<b>Libras</b></span>
+</div>
+<p class="logo-texto">Comunicação entre Libras e Português para quem não consegue falar</p>
+<nav>
+<a href="index.html">💬 Tradução ao vivo</a>
+<a href="alfabeto.html">🔤 Alfabeto em Libras</a>
+<a href="estatisticas.html" class="ativo">📊 Estatísticas (Python)</a>
+</nav>
+<div class="status"><span class="bolinha"></span> Sistema online</div>
+</aside>
+<main>
+<header class="topo">
+<div>
+<h1>Estatísticas da conversa</h1>
+<p>Python calcula as palavras mais usadas e mostra em gráfico</p>
+</div>
+<span class="selo" id="statusPython">Carregando Python...</span>
+</header>
+<section class="cartoes">
+<article class="cartao">
+<h2>📊 Palavras mais usadas</h2>
+<div id="grafico" style="margin-top: 14px;">
+<p class="vazio">Carregando...</p>
+</div>
+<button class="principal microfone" py-click="atualizar">Atualizar</button>
+</article>
+<article class="cartao">
+<h2>🔢 Números da conversa</h2>
+<div id="numeros" class="resultado" style="margin-top: 14px;">Carregando...</div>
+<div class="botoes" style="margin-top: 12px;">
+<button py-click="zerar">🗑 Zerar dados</button>
+</div>
+</article>
+</section>
+<section class="cartoes">
+<article class="cartao">
+<h2>📈 Modelo matemático: cobertura das palavras</h2>
+<p style="margin-top:8px">f(x) = a + b·log10(x), onde x é o número de palavras diferentes mais usadas e f(x) é a % da conversa que elas cobrem.</p>
+<div id="graficoModelo" style="margin-top: 14px;">
+<p class="vazio">Carregando...</p>
+</div>
+<div id="modelo" class="resultado" style="margin-top: 14px;"></div>
+</article>
+<article class="cartao">
+<h2>🎯 Simulação</h2>
+<p style="margin-top:8px">Quantas palavras são necessárias para cobrir uma parte da conversa?</p>
+<div class="botoes" style="margin-top: 12px;">
+<label for="metaPct">Cobertura desejada (%):</label>
+<input id="metaPct" type="number" min="1" max="99" value="80" style="width:80px">
+<button py-click="simular">Simular</button>
+</div>
+<div id="simulacao" class="resultado" style="margin-top: 14px;"></div>
+</article>
+</section>
+</main>
+<!-- o código Python fica no arquivo python/estatisticas.py -->
+<script type="py" src="python/estatisticas.py"></script>
+<div vw class="enabled">
+<div vw-access-button class="active"></div>
+<div vw-plugin-wrapper>
+<div class="vw-plugin-top-wrapper"></div>
+</div>
+</div>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>
 
-    <aside class="menu">
-        <div class="logo">
-            <span class="logo-icone">🤟</span>
-            <span>Ponte<b>Libras</b></span>
-        </div>
-        <p class="logo-texto">Comunicação entre Libras e Português para quem não consegue falar</p>
-
-        <nav>
-            <a href="index.html">💬 Tradução ao vivo</a>
-            <a href="alfabeto.html">🔤 Alfabeto em Libras</a>
-            <a href="estatisticas.html" class="ativo">📊 Estatísticas (Python)</a>
-        </nav>
-
-        <div class="status"><span class="bolinha"></span> Sistema online</div>
-    </aside>
-
-    <main>
-        <header class="topo">
-            <div>
-                <h1>Estatísticas da conversa</h1>
-                <p>Python calcula as palavras mais usadas e mostra em gráfico</p>
-            </div>
-            <span class="selo" id="statusPython">Carregando Python...</span>
-        </header>
-
-        <section class="cartoes">
-            <article class="cartao">
-                <h2>📊 Palavras mais usadas</h2>
-                <div id="grafico" style="margin-top: 14px;">
-                    <p class="vazio">Carregando...</p>
-                </div>
-                <button class="principal microfone" py-click="atualizar">Atualizar</button>
-            </article>
-
-            <article class="cartao">
-                <h2>🔢 Números da conversa</h2>
-                <div id="numeros" class="resultado" style="margin-top: 14px;">Carregando...</div>
-                <div class="botoes" style="margin-top: 12px;">
-                    <button py-click="zerar">🗑 Zerar dados</button>
-                </div>
-            </article>
-        </section>
-    </main>
-
-    <!-- o código Python fica no arquivo python/estatisticas.py -->
-    <script type="py" src="python/estatisticas.py"></script>
-
-    <div vw class="enabled">
-        <div vw-access-button class="active"></div>
-        <div vw-plugin-wrapper>
-            <div class="vw-plugin-top-wrapper"></div>
-        </div>
-    </div>
-    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-    <script>
         if (window.VLibras) {
+
             new window.VLibras.Widget('https://vlibras.gov.br/app');
+
         }
-    </script>
+</script>
 </body>
 </html>
+ 
