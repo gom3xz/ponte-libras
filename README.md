@@ -1,4 +1,4 @@
-# Ponte Libras 🤟
+# Ponte Libras
 
 Site para ajudar pessoas que não conseguem se comunicar verbalmente a conversar com quem ouve.
 

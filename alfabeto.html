@@ -1,65 +1,139 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ponte Libras - Alfabeto</title>
+    <meta name="description" content="Ponte Libras: aprenda a soletrar palavras com o alfabeto em Libras.">
+    <title>Ponte Libras | Alfabeto em Libras</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
+    <a href="#conteudo-principal" class="pular-conteudo">
+        Pular para o conteúdo principal
+    </a>
+
+    <!-- MENU LATERAL -->
     <aside class="menu">
         <div class="logo">
-            <span class="logo-icone">🤟</span>
+            <span class="logo-icone" aria-hidden="true">PL</span>
             <span>Ponte<b>Libras</b></span>
         </div>
-        <p class="logo-texto">Comunicação entre Libras e Português para quem não consegue falar</p>
 
-        <nav>
-            <a href="index.html">💬 Tradução ao vivo</a>
-            <a href="alfabeto.html" class="ativo">🔤 Alfabeto em Libras</a>
-            <a href="estatisticas.html">📊 Estatísticas (Python)</a>
+        <p class="logo-texto">
+            Tecnologia para conectar pessoas e tornar
+            a comunicação mais acessível.
+        </p>
+
+        <nav aria-label="Navegação principal">
+            <a href="index.html">Tradução ao vivo</a>
+            <a href="alfabeto.html" class="ativo" aria-current="page">
+                Alfabeto em Libras
+            </a>
+            <a href="estatisticas.html">Estatísticas</a>
         </nav>
 
-        <div class="status"><span class="bolinha"></span> Sistema online</div>
+        <div class="status">
+            <span class="bolinha" aria-hidden="true"></span>
+            Plataforma de comunicação
+        </div>
     </aside>
 
-    <main>
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main id="conteudo-principal" tabindex="-1">
+
         <header class="topo">
             <div>
                 <h1>Alfabeto em Libras</h1>
-                <p>Digite uma palavra e veja letra por letra como soletrar</p>
+                <p>Digite uma palavra e veja, letra por letra, como soletrar.</p>
             </div>
+            <span class="selo">Soletração manual</span>
         </header>
 
-        <section class="cartao">
-            <h2>Soletrar uma palavra</h2>
-            <div class="digitar" style="margin-top: 12px;">
-                <input type="text" id="palavraSoletrar" placeholder="Ex.: MARIA" maxlength="20">
-                <button class="principal" onclick="soletrar()">Soletrar</button>
+        <!-- SOLETRAR + LETRA EM DESTAQUE -->
+        <section class="cartoes" aria-label="Soletração de palavras">
+
+            <article class="cartao">
+                <div class="cartao-topo">
+                    <h2>Soletrar uma palavra</h2>
+                    <span class="ao-vivo verde">Letra por letra</span>
+                </div>
+
+                <p class="dica">
+                    Digite uma palavra e clique em soletrar.
+                    Cada letra será destacada no alfabeto
+                    abaixo, uma de cada vez.
+                </p>
+
+                <h3>Palavra</h3>
+                <div class="digitar">
+                    <input
+                        type="text"
+                        id="palavraSoletrar"
+                        aria-label="Palavra para soletrar"
+                        placeholder="Ex.: MARIA"
+                        maxlength="20"
+                    >
+                    <button
+                        type="button"
+                        class="principal"
+                        onclick="soletrar()"
+                    >
+                        Soletrar
+                    </button>
+                </div>
+
+                <h3>Letra atual</h3>
+                <p
+                    id="letraAtual"
+                    class="detectado"
+                    aria-live="polite"
+                >
+                    A letra da vez aparece aqui.
+                </p>
+            </article>
+
+            <article class="cartao">
+                <div class="cartao-topo">
+                    <h2>Sinal em destaque</h2>
+                    <span class="ao-vivo azul">Alfabeto manual</span>
+                </div>
+
+                <div class="painel-letra" aria-live="polite">
+                    <img id="painelImg" src="" alt="" hidden>
+                    <strong id="painelLetra">?</strong>
+                    <p id="painelTexto">
+                        Clique em uma letra para ver o sinal em Libras.
+                    </p>
+                </div>
+            </article>
+        </section>
+
+        <!-- ALFABETO COMPLETO -->
+        <section class="cartao secao-espaco" aria-labelledby="titulo-alfabeto">
+            <div class="cartao-topo">
+                <h2 id="titulo-alfabeto">Alfabeto completo</h2>
             </div>
-            <p id="letraAtual" class="detectado" style="margin-top: 12px;">A letra da vez aparece aqui.</p>
-        </section>
 
-        <section class="cartao painel-letra" aria-live="polite">
-            <img id="painelImg" src="" alt="" style="display:none">
-            <strong id="painelLetra">?</strong>
-            <p id="painelTexto">Clique em uma letra para ver o sinal em Libras.</p>
-        </section>
+            <p class="dica">
+                Selecione qualquer letra para ver o sinal correspondente.
+            </p>
 
-        <section style="margin-top: 20px;">
             <div id="grade" class="grade-alfabeto">
                 <!-- os cartões são criados pelo JavaScript -->
             </div>
         </section>
+
     </main>
 
+    <!-- VLIBRAS -->
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
+
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         if (window.VLibras) {
@@ -68,5 +142,6 @@
     </script>
 
     <script src="js/alfabeto.js"></script>
+
 </body>
 </html>

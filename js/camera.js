@@ -37,14 +37,14 @@ async function ligarCamera() {
         area.appendChild(img);
     } catch (erro) {
         alert('Não consegui conectar ao servidor Python em http://127.0.0.1:5000. Confira se o servidor_libras.py está rodando.');
-        botao.innerText = '📷 Ligar câmera';
+        botao.innerText = 'Ligar câmera';
         return;
     }
 
     cameraLigada = true;
-    botao.innerText = '⏹ Desligar câmera';
+    botao.innerText = 'Desligar câmera';
     botao.classList.add('gravando');
-    document.getElementById('statusCamera').innerText = '● AO VIVO';
+    document.getElementById('statusCamera').innerText = 'Ao vivo';
 
     if (pollTimer) clearInterval(pollTimer);
     pollTimer = setInterval(consultarPredicao, INTERVALO_POLL_MS);
@@ -62,13 +62,13 @@ async function desligarCamera() {
         await fetch(`${API_SERVIDOR}/stop`, { method: 'POST' });
     } catch (_) {}
 
-    document.getElementById('areaCamera').innerHTML = '<p class="camera-aviso">A câmera aparece aqui.</p>';
+    document.getElementById('areaCamera').innerHTML = '<p class="camera-aviso">A transmissão da câmera aparecerá aqui.</p>';
 
     const botao = document.getElementById('botaoCamera');
-    botao.innerText = '📷 Ligar câmera';
+    botao.innerText = 'Ligar câmera';
     botao.classList.remove('gravando');
-    document.getElementById('statusCamera').innerText = '● DESLIGADA';
-    document.getElementById('palpite').innerText = 'Palpite atual: -';
+    document.getElementById('statusCamera').innerText = 'Câmera desligada';
+    document.getElementById('palpite').innerText = 'Sinal identificado: nenhum';
 
     ultimoSinal = '';
     contagem = 0;
@@ -87,14 +87,14 @@ async function consultarPredicao() {
         const palpiteEl = document.getElementById('palpite');
 
         if (!label || label === 'Nenhum sinal' || label === 'Incerto') {
-            palpiteEl.innerText = 'Palpite atual: -';
+            palpiteEl.innerText = 'Sinal identificado: nenhum';
             ultimoSinal = '';
             contagem = 0;
             sinalConfirmadoNaSessao = false;
             return;
         }
 
-        palpiteEl.innerText = 'Palpite atual: ' + label;
+        palpiteEl.innerText = 'Sinal identificado: ' + label;
 
         if (label === ultimoSinal) {
             contagem++;
@@ -122,7 +122,7 @@ function adicionarNaLegenda(sinal) {
 
 function mostrarLegenda() {
     const campo = document.getElementById('legenda');
-    campo.innerText = legenda.trim() === '' ? 'A legenda aparece aqui.' : legenda;
+    campo.innerText = legenda.trim() === '' ? 'Os sinais reconhecidos aparecerão aqui.' : legenda;
 }
 
 function espacoLegenda() {

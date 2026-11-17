@@ -1,91 +1,170 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ponte Libras - Estatísticas</title>
-<link rel="stylesheet" href="css/style.css">
-<!-- PyScript: deixa rodar Python dentro do navegador -->
-<link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
-<script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ponte Libras: estatísticas da conversa calculadas em Python.">
+    <title>Ponte Libras | Estatísticas</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- PyScript: permite rodar Python dentro do navegador -->
+    <link rel="stylesheet" href="https://pyscript.net/releases/2024.1.1/core.css">
+    <script type="module" src="https://pyscript.net/releases/2024.1.1/core.js"></script>
 </head>
 <body>
-<aside class="menu">
-<div class="logo">
-<span class="logo-icone">🤟</span>
-<span>Ponte<b>Libras</b></span>
-</div>
-<p class="logo-texto">Comunicação entre Libras e Português para quem não consegue falar</p>
-<nav>
-<a href="index.html">💬 Tradução ao vivo</a>
-<a href="alfabeto.html">🔤 Alfabeto em Libras</a>
-<a href="estatisticas.html" class="ativo">📊 Estatísticas (Python)</a>
-</nav>
-<div class="status"><span class="bolinha"></span> Sistema online</div>
-</aside>
-<main>
-<header class="topo">
-<div>
-<h1>Estatísticas da conversa</h1>
-<p>Python calcula as palavras mais usadas e mostra em gráfico</p>
-</div>
-<span class="selo" id="statusPython">Carregando Python...</span>
-</header>
-<!-- 1) palavras mais usadas -->
-<section class="cartao">
-<h2>Palavras mais usadas</h2>
-<div id="grafico" style="margin-top: 14px;">
-<p class="vazio">Carregando...</p>
-</div>
-<button class="principal microfone" py-click="atualizar">Atualizar</button>
-</section>
-<!-- 2) gráfico do modelo, grande e em destaque -->
-<section class="cartao" style="margin-top: 20px;">
-<h2>Quantas palavras preciso saber para entender a conversa?</h2>
-<p class="dica" style="margin-top: 6px;">Cada bolinha mostra quanto da conversa é coberto pelas palavras mais usadas. A linha vermelha é o modelo matemático.</p>
-<div id="graficoModelo" style="margin-top: 14px;">
-<p class="vazio">Carregando...</p>
-</div>
-<div id="cartoesModelo" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:16px;"></div>
-<p id="formula" class="dica" style="margin-top:14px;text-align:center;"></p>
-<details style="margin-top: 14px;">
-<summary class="dica" style="cursor:pointer;">Ver detalhes do cálculo</summary>
-<div id="modelo" class="resultado" style="margin-top: 10px;"></div>
-</details>
-</section>
-<!-- 3) simulação com explicação -->
-<section class="cartao" style="margin-top: 20px;">
-<h2>Simulação: quantas palavras eu preciso saber?</h2>
-<p class="dica" style="margin-top: 6px;">
 
-               Escolha quanto da conversa você quer entender. O site usa a fórmula do gráfico
+    <a href="#conteudo-principal" class="pular-conteudo">
+        Pular para o conteúdo principal
+    </a>
 
-               para dizer quantas das palavras mais usadas você precisa aprender.
-</p>
-<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px;">
-<label for="metaPct" class="dica">Quero entender</label>
-<input id="metaPct" type="number" min="1" max="99" value="80" style="width:70px;padding:6px;">
-<span class="dica">% da conversa</span>
-<button py-click="simular">Simular</button>
-</div>
-<div id="simulacao" style="margin-top: 14px;font-size:16px;line-height:1.6;"></div>
-</section>
-<!-- 4) números da conversa embaixo -->
-<section class="cartao" style="margin-top: 20px;">
-<h2>Números da conversa</h2>
-<div id="numeros" class="resultado" style="margin-top: 14px;">Carregando...</div>
-<div class="botoes" style="margin-top: 12px;">
-<button py-click="zerar">🗑 Zerar dados</button>
-</div>
-</section>
-</main>
-<!-- o código Python fica no arquivo python/estatisticas.py -->
-<script type="py" src="python/estatisticas.py"></script>
-<div vw class="enabled">
-<div vw-access-button class="active"></div>
-<div vw-plugin-wrapper>
-<div class="vw-plugin-top-wrapper"></div>
-</div>
-</div>
-<script src="https://vl
- 
+    <!-- MENU LATERAL -->
+    <aside class="menu">
+        <div class="logo">
+            <span class="logo-icone" aria-hidden="true">PL</span>
+            <span>Ponte<b>Libras</b></span>
+        </div>
+
+        <p class="logo-texto">
+            Tecnologia para conectar pessoas e tornar
+            a comunicação mais acessível.
+        </p>
+
+        <nav aria-label="Navegação principal">
+            <a href="index.html">Tradução ao vivo</a>
+            <a href="alfabeto.html">Alfabeto em Libras</a>
+            <a href="estatisticas.html" class="ativo" aria-current="page">
+                Estatísticas
+            </a>
+        </nav>
+
+        <div class="status">
+            <span class="bolinha" aria-hidden="true"></span>
+            Plataforma de comunicação
+        </div>
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main id="conteudo-principal" tabindex="-1">
+
+        <header class="topo">
+            <div>
+                <h1>Estatísticas da conversa</h1>
+                <p>O Python calcula as palavras mais usadas e mostra em gráfico.</p>
+            </div>
+            <span class="selo" id="statusPython" role="status">
+                Carregando Python...
+            </span>
+        </header>
+
+        <!-- 1) PALAVRAS MAIS USADAS -->
+        <section class="cartao" aria-labelledby="titulo-palavras">
+            <div class="cartao-topo">
+                <h2 id="titulo-palavras">Palavras mais usadas</h2>
+                <span class="ao-vivo verde">Histórico da conversa</span>
+            </div>
+
+            <p class="dica">
+                Ranking das palavras que mais apareceram
+                nas mensagens da tradução ao vivo.
+            </p>
+
+            <div id="grafico" class="bloco-grafico">
+                <p class="vazio">Carregando...</p>
+            </div>
+
+            <button type="button" class="principal microfone" py-click="atualizar">
+                Atualizar dados
+            </button>
+        </section>
+
+        <!-- 2) GRÁFICO DO MODELO -->
+        <section class="cartao secao-espaco" aria-labelledby="titulo-modelo">
+            <div class="cartao-topo">
+                <h2 id="titulo-modelo">
+                    Quantas palavras preciso saber para entender a conversa?
+                </h2>
+                <span class="ao-vivo azul">Modelo matemático</span>
+            </div>
+
+            <p class="dica">
+                Cada bolinha mostra quanto da conversa é coberto
+                pelas palavras mais usadas. A linha vermelha
+                é o modelo matemático.
+            </p>
+
+            <div id="graficoModelo" class="bloco-grafico">
+                <p class="vazio">Carregando...</p>
+            </div>
+
+            <div id="cartoesModelo" class="cartoes-modelo"></div>
+
+            <p id="formula" class="dica formula-centro"></p>
+
+            <details class="detalhes-calculo">
+                <summary class="dica">Ver detalhes do cálculo</summary>
+                <div id="modelo" class="resultado"></div>
+            </details>
+        </section>
+
+        <!-- 3) SIMULAÇÃO -->
+        <section class="cartao secao-espaco" aria-labelledby="titulo-simulacao">
+            <div class="cartao-topo">
+                <h2 id="titulo-simulacao">
+                    Simulação: quantas palavras eu preciso saber?
+                </h2>
+                <span class="ao-vivo verde">Simulação</span>
+            </div>
+
+            <p class="dica">
+                Escolha quanto da conversa você quer entender.
+                O site usa a fórmula do gráfico para dizer quantas
+                das palavras mais usadas você precisa aprender.
+            </p>
+
+            <h3>Meta de entendimento</h3>
+            <div class="simulacao-campos">
+                <label for="metaPct" class="dica">Quero entender</label>
+                <input id="metaPct" type="number" min="1" max="99" value="80">
+                <span class="dica">% da conversa</span>
+                <button type="button" class="principal" py-click="simular">
+                    Simular
+                </button>
+            </div>
+
+            <div id="simulacao" class="simulacao-resultado" aria-live="polite"></div>
+        </section>
+
+        <!-- 4) NÚMEROS DA CONVERSA -->
+        <section class="cartao secao-espaco" aria-labelledby="titulo-numeros">
+            <div class="cartao-topo">
+                <h2 id="titulo-numeros">Números da conversa</h2>
+                <button type="button" py-click="zerar">
+                    Zerar dados
+                </button>
+            </div>
+
+            <div id="numeros" class="resultado">Carregando...</div>
+        </section>
+
+    </main>
+
+    <!-- o código Python fica no arquivo python/estatisticas.py -->
+    <script type="py" src="python/estatisticas.py"></script>
+
+    <!-- VLIBRAS -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        if (window.VLibras) {
+            new window.VLibras.Widget('https://vlibras.gov.br/app');
+        }
+    </script>
+
+</body>
+</html>

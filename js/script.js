@@ -6,16 +6,16 @@
 
 // frases que a pessoa que não fala pode usar com 1 toque
 const frases = [
-    { emoji: '👋', texto: 'Olá, tudo bem?' },
-    { emoji: '✅', texto: 'Sim' },
-    { emoji: '❌', texto: 'Não' },
-    { emoji: '🙏', texto: 'Obrigado' },
-    { emoji: '🤕', texto: 'Estou com dor' },
-    { emoji: '💧', texto: 'Quero água' },
-    { emoji: '🍽️', texto: 'Estou com fome' },
-    { emoji: '🚻', texto: 'Preciso ir ao banheiro' },
-    { emoji: '🆘', texto: 'Preciso de ajuda' },
-    { emoji: '🔁', texto: 'Pode repetir, por favor?' }
+    { texto: 'Olá, tudo bem?' },
+    { texto: 'Sim' },
+    { texto: 'Não' },
+    { texto: 'Obrigado' },
+    { texto: 'Estou com dor' },
+    { texto: 'Quero água' },
+    { texto: 'Estou com fome' },
+    { texto: 'Preciso ir ao banheiro' },
+    { texto: 'Preciso de ajuda' },
+    { texto: 'Pode repetir, por favor?' }
 ];
 
 const alfabeto = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -53,7 +53,7 @@ function criarFrases() {
     for (let i = 0; i < frases.length; i++) {
         const botao = document.createElement('button');
         botao.className = 'frase';
-        botao.innerHTML = '<span>' + frases[i].emoji + '</span>' + frases[i].texto;
+        botao.innerText = frases[i].texto;
 
         botao.onclick = function () {
             mensagemDaPessoaQueSinaliza(frases[i].texto);
@@ -184,11 +184,11 @@ function mudarMicrofone(ligado) {
     const onda = document.getElementById('onda');
 
     if (ligado) {
-        botao.innerText = '🔴 Ouvindo...';
+        botao.innerText = 'Ouvindo...';
         botao.classList.add('gravando');
         onda.classList.add('mexendo');
     } else {
-        botao.innerText = '🎤 Começar a ouvir';
+        botao.innerText = 'Iniciar reconhecimento de voz';
         botao.classList.remove('gravando');
         onda.classList.remove('mexendo');
     }
@@ -233,12 +233,12 @@ function adicionarMensagem(quem, texto) {
 
     switch (quem) {
         case 'sinaliza':
-            nome = '🤟 Pessoa que sinaliza';
+            nome = 'Pessoa que sinaliza';
             classe = 'msg-sinaliza';
             totalSinaliza++;
             break;
         case 'ouvinte':
-            nome = '🗣️ Pessoa ouvinte';
+            nome = 'Pessoa ouvinte';
             classe = 'msg-ouvinte';
             totalOuvinte++;
             break;
@@ -251,7 +251,7 @@ function adicionarMensagem(quem, texto) {
     mensagem.innerHTML =
         '<div class="msg-topo"><b>' + nome + '</b> <small>' + horaAgora() + '</small></div>' +
         '<p></p>' +
-        '<button class="ouvir-de-novo" aria-label="Ouvir de novo">🔊</button>';
+        '<button class="ouvir-de-novo" aria-label="Ouvir a mensagem de novo">Ouvir</button>';
 
     // innerText no texto para ninguém conseguir colocar HTML na conversa
     mensagem.querySelector('p').innerText = texto;

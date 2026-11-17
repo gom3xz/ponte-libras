@@ -234,10 +234,6 @@ button.principal:hover {
     min-height: 46px;
 }
 
-.frase span {
-    font-size: 20px;
-}
-
 .frase:hover {
     background: #d0eeda;
 }
@@ -400,7 +396,7 @@ button.principal:hover {
 
 .mensagem {
     position: relative;
-    padding: 12px 50px 12px 14px;
+    padding: 12px 80px 12px 14px;
     border-radius: 10px;
     border: 1px solid;
 }
@@ -434,9 +430,17 @@ button.principal:hover {
     right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    border: none;
-    background: none;
-    font-size: 20px;
+    border: 1px solid var(--borda);
+    background: var(--branco);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--azul);
+}
+
+.ouvir-de-novo:hover {
+    border-color: var(--azul);
 }
 
 /* ---------- ALFABETO ---------- */
@@ -904,4 +908,74 @@ input:focus-visible {
     .guia-item:hover {
         transform: none;
     }
+}
+
+
+/* ================================
+   PÁGINAS DE ALFABETO E ESTATÍSTICAS
+   (mesmo padrão visual do index)
+   ================================ */
+
+.secao-espaco {
+    margin-top: 20px;
+}
+
+.cartao .painel-letra {
+    margin-top: 8px;
+    min-height: 160px;
+}
+
+.secao-espaco .grade-alfabeto {
+    margin-top: 16px;
+}
+
+.bloco-grafico {
+    margin-top: 14px;
+}
+
+.cartoes-modelo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.formula-centro {
+    margin-top: 14px;
+    text-align: center;
+}
+
+.detalhes-calculo {
+    margin-top: 14px;
+}
+
+.detalhes-calculo summary {
+    cursor: pointer;
+}
+
+.simulacao-campos {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.simulacao-campos input {
+    width: 80px;
+    padding: 10px;
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.simulacao-campos button {
+    border: 1px solid var(--borda);
+    border-radius: 8px;
+    padding: 10px 14px;
+}
+
+.simulacao-resultado {
+    margin-top: 14px;
+    font-size: 16px;
+    line-height: 1.6;
 }
