@@ -585,13 +585,13 @@ button.principal:hover {
 }
 
 .painel-letra img {
-    width: 160px;
-    height: 160px;
+    width: 200px;
+    height: 200px;
     object-fit: contain;
 }
 
 .painel-letra strong {
-    font-size: 90px;
+    font-size: 56px;
     line-height: 1;
     color: var(--azul);
 }
@@ -985,4 +985,10 @@ input:focus-visible {
     width: 28px;
     height: 28px;
     display: block;
+}
+
+/* fundo branco das imagens das mãos se mistura com o cartão */
+.cartao-letra img,
+.painel-letra img {
+    mix-blend-mode: multiply;
 }
