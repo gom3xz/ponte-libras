@@ -4,30 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ponte Libras: plataforma de comunicação acessível entre pessoas surdas e ouvintes.">
+    <meta name="description" content="Ponte Libras: comunicação acessível entre pessoas surdas e ouvintes.">
     <title>Ponte Libras | Tradução ao vivo</title>
     <link rel="stylesheet" href="css/style.css">
-
-    <style>
-        .pular-conteudo {
-            position: absolute;
-            top: -100px;
-            left: 12px;
-            z-index: 1000;
-            padding: 12px 16px;
-            background: #ffffff;
-            color: #0d1b33;
-            border: 2px solid #1f5fd1;
-            border-radius: 8px;
-        }
-
-        .pular-conteudo:focus {
-            top: 12px;
-        }
-    </style>
 </head>
-
 <body>
+
     <a href="#conteudo-principal" class="pular-conteudo">
         Pular para o conteúdo principal
     </a>
@@ -48,14 +30,8 @@
             <a href="index.html" class="ativo" aria-current="page">
                 Tradução ao vivo
             </a>
-
-            <a href="alfabeto.html">
-                Alfabeto em Libras
-            </a>
-
-            <a href="estatisticas.html">
-                Estatísticas
-            </a>
+            <a href="alfabeto.html">Alfabeto em Libras</a>
+            <a href="estatisticas.html">Estatísticas</a>
         </nav>
 
         <div class="status">
@@ -70,25 +46,18 @@
         <header class="topo">
             <div>
                 <h1>Tradução ao vivo</h1>
-                <p>
-                    Uma ponte de comunicação entre
-                    Libras e Português.
-                </p>
+                <p>Uma ponte de comunicação entre Libras e Português.</p>
             </div>
-
             <span class="selo">Comunicação acessível</span>
         </header>
 
         <!-- TRADUÇÃO NOS DOIS SENTIDOS -->
         <section class="cartoes" aria-label="Ferramentas de tradução">
 
-            <!-- PESSOA QUE SINALIZA -->
             <article class="cartao">
                 <div class="cartao-topo">
                     <h2>Pessoa que sinaliza → Voz</h2>
-                    <span class="ao-vivo verde">
-                        Frases e soletração
-                    </span>
+                    <span class="ao-vivo verde">Frases e soletração</span>
                 </div>
 
                 <p class="dica">
@@ -105,7 +74,7 @@
 
                 <div class="palavra-montada">
                     <span id="palavra" aria-live="polite">
-                        Selecione as letras para começar.
+                        Toque nas letras...
                     </span>
                 </div>
 
@@ -113,24 +82,19 @@
                     <button type="button" onclick="adicionarEspaco()">
                         Espaço
                     </button>
-
                     <button type="button" onclick="apagarLetra()">
                         Apagar
                     </button>
-
                     <button type="button" class="principal" onclick="enviarPalavra()">
                         Reproduzir voz
                     </button>
                 </div>
             </article>
 
-            <!-- PESSOA OUVINTE -->
             <article class="cartao">
                 <div class="cartao-topo">
                     <h2>Pessoa ouvinte → Libras</h2>
-                    <span class="ao-vivo azul">
-                        Voz e texto
-                    </span>
+                    <span class="ao-vivo azul">Voz e texto</span>
                 </div>
 
                 <p class="dica">
@@ -157,7 +121,6 @@
                 </div>
 
                 <h3>Digite uma mensagem</h3>
-
                 <div class="digitar">
                     <input
                         type="text"
@@ -165,7 +128,6 @@
                         aria-label="Mensagem da pessoa ouvinte"
                         placeholder="Digite sua mensagem..."
                     >
-
                     <button
                         type="button"
                         class="principal"
@@ -176,7 +138,6 @@
                 </div>
 
                 <h3>Texto reconhecido</h3>
-
                 <p
                     id="ultimoTextoOuvinte"
                     class="detectado"
@@ -190,17 +151,11 @@
 
         <!-- RECONHECIMENTO DE SINAIS -->
         <section class="cartao camera-secao" aria-labelledby="titulo-camera">
-
             <div class="cartao-topo">
                 <h2 id="titulo-camera">
                     Reconhecimento de sinais em Libras
                 </h2>
-
-                <span
-                    class="ao-vivo verde"
-                    id="statusCamera"
-                    role="status"
-                >
+                <span class="ao-vivo verde" id="statusCamera" role="status">
                     Câmera desligada
                 </span>
             </div>
@@ -226,14 +181,11 @@
                         Ligar câmera
                     </button>
 
-                    <!-- TREINAMENTO -->
                     <div class="treino-libras">
                         <h3>Treinamento de sinais</h3>
-
                         <p class="dica">
                             Com a câmera ligada, informe o sinal,
-                            capture amostras e treine o modelo
-                            de reconhecimento.
+                            capture amostras e treine o modelo.
                         </p>
 
                         <div class="digitar">
@@ -244,7 +196,6 @@
                                 placeholder="Ex.: A ou SIM"
                                 maxlength="20"
                             >
-
                             <button
                                 type="button"
                                 onclick="capturarAmostraLibras()"
@@ -261,7 +212,6 @@
                             >
                                 Treinar modelo
                             </button>
-
                             <button
                                 type="button"
                                 onclick="limparAmostrasLibras()"
@@ -270,20 +220,14 @@
                             </button>
                         </div>
 
-                        <p
-                            id="infoTreinoLibras"
-                            class="dica"
-                            role="status"
-                        >
+                        <p id="infoTreinoLibras" class="dica" role="status">
                             Aguardando captura de amostras.
                         </p>
                     </div>
                 </div>
 
-                <!-- LEGENDA -->
                 <div>
                     <h3>Orientações para reconhecimento</h3>
-
                     <p class="dica">
                         Posicione sua mão dentro da área da câmera
                         e mantenha o sinal estável até o sistema
@@ -293,12 +237,10 @@
                     <p class="dica">
                         Para repetir o mesmo sinal, retire a mão
                         do enquadramento e faça o movimento novamente.
-                        O reconhecimento depende dos sinais
-                        previamente treinados.
+                        O reconhecimento depende dos sinais treinados.
                     </p>
 
                     <h3>Legenda gerada</h3>
-
                     <p
                         id="legenda"
                         class="detectado"
@@ -309,20 +251,12 @@
                     </p>
 
                     <div class="botoes">
-                        <button
-                            type="button"
-                            onclick="espacoLegenda()"
-                        >
+                        <button type="button" onclick="espacoLegenda()">
                             Espaço
                         </button>
-
-                        <button
-                            type="button"
-                            onclick="apagarLegenda()"
-                        >
+                        <button type="button" onclick="apagarLegenda()">
                             Apagar
                         </button>
-
                         <button
                             type="button"
                             class="principal"
@@ -332,6 +266,56 @@
                         </button>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- NOVO: GUIA DE UTILIZAÇÃO -->
+        <section class="cartao guia-uso" aria-labelledby="titulo-guia">
+            <div class="cartao-topo">
+                <h2 id="titulo-guia">Como utilizar o Ponte Libras</h2>
+            </div>
+
+            <p class="dica">
+                Conheça os recursos disponíveis e escolha
+                a melhor forma de se comunicar.
+            </p>
+
+            <div class="guia-grade">
+                <article class="guia-item">
+                    <span class="guia-numero" aria-hidden="true">01</span>
+                    <h3>Frases rápidas</h3>
+                    <p>
+                        Selecione uma mensagem pronta para
+                        reproduzi-la em voz alta.
+                    </p>
+                </article>
+
+                <article class="guia-item">
+                    <span class="guia-numero" aria-hidden="true">02</span>
+                    <h3>Reconhecimento de voz</h3>
+                    <p>
+                        Utilize o microfone para transformar
+                        a fala em texto na conversa.
+                    </p>
+                </article>
+
+                <article class="guia-item">
+                    <span class="guia-numero" aria-hidden="true">03</span>
+                    <h3>Reconhecimento de sinais</h3>
+                    <p>
+                        Com o servidor Python ativo, utilize
+                        a câmera para reconhecer sinais treinados.
+                    </p>
+                </article>
+
+                <article class="guia-item">
+                    <span class="guia-numero" aria-hidden="true">04</span>
+                    <h3>Alfabeto em Libras</h3>
+                    <p>
+                        Acesse a página do alfabeto para
+                        praticar a soletração de palavras.
+                    </p>
+                </article>
             </div>
         </section>
 
@@ -365,10 +349,7 @@
         <!-- HISTÓRICO -->
         <section class="cartao conversa" aria-labelledby="titulo-conversa">
             <div class="cartao-topo">
-                <h2 id="titulo-conversa">
-                    Histórico da conversa
-                </h2>
-
+                <h2 id="titulo-conversa">Histórico da conversa</h2>
                 <button
                     type="button"
                     onclick="limparConversa()"
@@ -380,13 +361,14 @@
 
             <div id="mensagens" aria-label="Mensagens da conversa">
                 <p class="vazio">
-                    Nenhuma mensagem registrada nesta conversa.
+                    A conversa vai aparecer aqui.
                 </p>
             </div>
         </section>
+
     </main>
 
-    <!-- INTEGRAÇÃO VLIBRAS -->
+    <!-- VLIBRAS -->
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>
@@ -401,8 +383,8 @@
         }
     </script>
 
-    <!-- SCRIPTS DA APLICAÇÃO -->
     <script src="js/script.js"></script>
     <script src="js/camera.js"></script>
+
 </body>
 </html>
