@@ -667,3 +667,67 @@ button.principal:hover {
         text-align: center;
     }
 }
+
+
+/* RESPONSIVIDADE - MELHORIAS PARA CELULAR */
+
+main {
+    min-width: 0;
+}
+
+.cartao {
+    min-width: 0;
+}
+
+.area-camera img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+@media (max-width: 600px) {
+    main {
+        width: 100%;
+        padding: 16px;
+    }
+
+    .topo {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .topo h1 {
+        font-size: 24px;
+    }
+
+    .cartao {
+        padding: 16px;
+    }
+
+    .letras {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
+    .frases,
+    .numeros {
+        grid-template-columns: 1fr;
+    }
+
+    .digitar {
+        flex-direction: column;
+    }
+
+    .digitar input,
+    .digitar button {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .botoes {
+        flex-wrap: wrap;
+    }
+
+    .botoes button {
+        min-width: 90px;
+    }
+}
