@@ -31,41 +31,50 @@
 </div>
 <span class="selo" id="statusPython">Carregando Python...</span>
 </header>
-<section class="cartoes">
-<article class="cartao">
+<!-- 1) palavras mais usadas -->
+<section class="cartao">
 <h2>📊 Palavras mais usadas</h2>
 <div id="grafico" style="margin-top: 14px;">
 <p class="vazio">Carregando...</p>
 </div>
 <button class="principal microfone" py-click="atualizar">Atualizar</button>
-</article>
-<article class="cartao">
+</section>
+<!-- 2) gráfico do modelo, grande e em destaque -->
+<section class="cartao" style="margin-top: 20px;">
+<h2>📈 Quantas palavras entendem a conversa?</h2>
+<p class="dica" style="margin-top: 6px;">Cada bolinha mostra quanto da conversa é coberto pelas palavras mais usadas. A linha vermelha é o modelo matemático.</p>
+<div id="graficoModelo" style="margin-top: 14px;">
+<p class="vazio">Carregando...</p>
+</div>
+<div id="cartoesModelo" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:16px;"></div>
+<p id="formula" class="dica" style="margin-top:14px;text-align:center;"></p>
+<details style="margin-top: 14px;">
+<summary class="dica" style="cursor:pointer;">Ver detalhes do cálculo</summary>
+<div id="modelo" class="resultado" style="margin-top: 10px;"></div>
+</details>
+</section>
+<!-- 3) simulação com explicação -->
+<section class="cartao" style="margin-top: 20px;">
+<h2>🎯 Simulação: quantas palavras eu preciso saber?</h2>
+<p class="dica" style="margin-top: 6px;">
+               Escolha quanto da conversa você quer entender. O site usa a fórmula do gráfico
+               para dizer quantas das palavras mais usadas você precisa aprender.
+</p>
+<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:12px;">
+<label for="metaPct" class="dica">Quero entender</label>
+<input id="metaPct" type="number" min="1" max="99" value="80" style="width:70px;padding:6px;">
+<span class="dica">% da conversa</span>
+<button py-click="simular">Simular</button>
+</div>
+<div id="simulacao" style="margin-top: 14px;font-size:16px;line-height:1.6;"></div>
+</section>
+<!-- 4) números da conversa embaixo -->
+<section class="cartao" style="margin-top: 20px;">
 <h2>🔢 Números da conversa</h2>
 <div id="numeros" class="resultado" style="margin-top: 14px;">Carregando...</div>
 <div class="botoes" style="margin-top: 12px;">
 <button py-click="zerar">🗑 Zerar dados</button>
 </div>
-</article>
-</section>
-<section class="cartoes">
-<article class="cartao">
-<h2>📈 Modelo matemático: cobertura das palavras</h2>
-<p style="margin-top:8px">f(x) = a + b·log10(x), onde x é o número de palavras diferentes mais usadas e f(x) é a % da conversa que elas cobrem.</p>
-<div id="graficoModelo" style="margin-top: 14px;">
-<p class="vazio">Carregando...</p>
-</div>
-<div id="modelo" class="resultado" style="margin-top: 14px;"></div>
-</article>
-<article class="cartao">
-<h2>🎯 Simulação</h2>
-<p style="margin-top:8px">Quantas palavras são necessárias para cobrir uma parte da conversa?</p>
-<div class="botoes" style="margin-top: 12px;">
-<label for="metaPct">Cobertura desejada (%):</label>
-<input id="metaPct" type="number" min="1" max="99" value="80" style="width:80px">
-<button py-click="simular">Simular</button>
-</div>
-<div id="simulacao" class="resultado" style="margin-top: 14px;"></div>
-</article>
 </section>
 </main>
 <!-- o código Python fica no arquivo python/estatisticas.py -->
@@ -76,15 +85,4 @@
 <div class="vw-plugin-top-wrapper"></div>
 </div>
 </div>
-<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-<script>
-
-        if (window.VLibras) {
-
-            new window.VLibras.Widget('https://vlibras.gov.br/app');
-
-        }
-</script>
-</body>
-</html>
- 
+<script src="https://vl
