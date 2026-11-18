@@ -68,6 +68,9 @@
             </span>
         </header>
 
+        <!-- aviso quando a página está usando a conversa de exemplo -->
+        <p id="avisoExemplo" class="dica" role="status"></p>
+
         <!-- 1) PALAVRAS MAIS USADAS -->
         <section class="cartao" aria-labelledby="titulo-palavras">
             <div class="cartao-topo">
@@ -102,6 +105,10 @@
                 Cada bolinha mostra quanto da conversa é coberto
                 pelas palavras mais usadas. A linha vermelha
                 é o modelo matemático.
+                <br>
+                Hipótese adotada: o modelo conta todas as palavras da conversa,
+                inclusive as de ligação (como "a", "o", "de"). Só o ranking de
+                barras lá em cima ignora essas palavras.
             </p>
 
             <div id="graficoModelo" class="bloco-grafico">
@@ -115,6 +122,31 @@
             <details class="detalhes-calculo">
                 <summary class="dica">Ver detalhes do cálculo</summary>
                 <div id="modelo" class="resultado"></div>
+            </details>
+        </section>
+
+        <!-- 2B) ANÁLISE MATEMÁTICA DA FUNÇÃO -->
+        <section class="cartao secao-espaco" aria-labelledby="titulo-analise">
+            <div class="cartao-topo">
+                <h2 id="titulo-analise">Análise matemática da função</h2>
+                <span class="ao-vivo azul">Função logarítmica</span>
+            </div>
+
+            <p class="dica">
+                Por que uma função logarítmica? Em textos de qualquer língua,
+                poucas palavras aparecem muitas vezes e a maioria aparece
+                raramente (lei de Zipf, George K. Zipf, 1949). Por isso as
+                primeiras palavras cobrem muito da conversa e o ganho diminui
+                a cada palavra nova, que é o comportamento de uma função
+                logarítmica. Os valores de a e b não são inventados: são
+                ajustados (mínimos quadrados) aos dados da conversa.
+            </p>
+
+            <div id="analise" class="resultado">Carregando...</div>
+
+            <details class="detalhes-calculo">
+                <summary class="dica">Contas passo a passo (para conferir à mão)</summary>
+                <div id="contas" class="resultado"></div>
             </details>
         </section>
 
@@ -150,9 +182,14 @@
         <section class="cartao secao-espaco" aria-labelledby="titulo-numeros">
             <div class="cartao-topo">
                 <h2 id="titulo-numeros">Números da conversa</h2>
-                <button type="button" py-click="zerar">
-                    Zerar dados
-                </button>
+                <div>
+                    <button type="button" py-click="carregar_exemplo">
+                        Carregar conversa de exemplo
+                    </button>
+                    <button type="button" py-click="zerar">
+                        Zerar dados
+                    </button>
+                </div>
             </div>
 
             <div id="numeros" class="resultado">Carregando...</div>
