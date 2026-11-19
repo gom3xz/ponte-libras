@@ -1,7 +1,3 @@
-/* ================================
-   PONTE LIBRAS - estilo
-   ================================ */
-
 :root {
     --azul-escuro: #0d1b33;
     --azul: #1f5fd1;
@@ -41,8 +37,6 @@ a:focus-visible {
     outline-offset: 2px;
 }
 
-/* ---------- MENU LATERAL ---------- */
-
 .menu {
     width: 250px;
     background: var(--azul-escuro);
@@ -64,6 +58,12 @@ a:focus-visible {
 
 .logo-icone {
     font-size: 30px;
+}
+
+.logo-icone img {
+    width: 35px;
+    height: auto;
+    object-fit: contain;
 }
 
 .logo-texto {
@@ -112,8 +112,6 @@ nav a.ativo {
     border-radius: 50%;
     background: #2ecc71;
 }
-
-/* ---------- CONTEÚDO ---------- */
 
 main {
     flex: 1;
@@ -183,16 +181,19 @@ main {
     font-weight: 700;
 }
 
-.verde { color: var(--verde); }
-.azul { color: var(--azul); }
+.verde {
+    color: var(--verde);
+}
+
+.azul {
+    color: var(--azul);
+}
 
 .dica {
     font-size: 14px;
     color: var(--cinza);
     line-height: 1.5;
 }
-
-/* ---------- BOTÕES ---------- */
 
 .botoes button,
 .digitar button,
@@ -277,7 +278,6 @@ button.principal:hover {
 .botoes button {
     flex: 1;
 }
-
 .microfone {
     width: 100%;
     margin-top: 16px;
@@ -294,7 +294,6 @@ button.principal:hover {
     background: #c62828;
 }
 
-/* ondinha de áudio */
 .onda {
     display: flex;
     justify-content: center;
@@ -346,8 +345,6 @@ button.principal:hover {
     min-height: 50px;
 }
 
-/* ---------- NÚMEROS ---------- */
-
 .numeros {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -378,8 +375,6 @@ button.principal:hover {
     font-size: 12px;
     color: var(--cinza);
 }
-
-/* ---------- CONVERSA ---------- */
 
 #mensagens {
     display: flex;
@@ -442,9 +437,6 @@ button.principal:hover {
 .ouvir-de-novo:hover {
     border-color: var(--azul);
 }
-
-/* ---------- ALFABETO ---------- */
-
 .grade-alfabeto {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -482,8 +474,6 @@ button.principal:hover {
     border-color: var(--verde);
     background: var(--verde-claro);
 }
-
-/* ---------- CALCULADORA PYTHON ---------- */
 
 .campos {
     display: flex;
@@ -531,9 +521,6 @@ button.principal:hover {
     color: var(--cinza);
     font-size: 14px;
 }
-
-/* ---------- CELULAR ---------- */
-
 @media (max-width: 900px) {
     body {
         flex-direction: column;
@@ -572,10 +559,16 @@ button.principal:hover {
     .letras {
         grid-template-columns: repeat(7, 1fr);
     }
+
+    .camera-grade {
+        grid-template-columns: 1fr;
+    }
+
+    .painel-letra {
+        flex-direction: column;
+        text-align: center;
+    }
 }
-
-
-/* ---------- PAINEL DA LETRA (alfabeto) ---------- */
 
 .painel-letra {
     display: flex;
@@ -600,8 +593,6 @@ button.principal:hover {
     font-size: 16px;
     color: var(--cinza);
 }
-
-/* ---------- CÂMERA (tradução ao vivo) ---------- */
 
 .camera-secao {
     margin-top: 20px;
@@ -634,8 +625,6 @@ button.principal:hover {
     font-size: 14px;
 }
 
-/* ---------- GRÁFICO (estatísticas) ---------- */
-
 .barra-linha {
     display: grid;
     grid-template-columns: 100px 1fr 90px;
@@ -661,20 +650,6 @@ button.principal:hover {
     color: var(--cinza);
 }
 
-@media (max-width: 900px) {
-    .camera-grade {
-        grid-template-columns: 1fr;
-    }
-
-    .painel-letra {
-        flex-direction: column;
-        text-align: center;
-    }
-}
-
-
-/* RESPONSIVIDADE - MELHORIAS PARA CELULAR */
-
 main {
     min-width: 0;
 }
@@ -688,7 +663,6 @@ main {
     max-width: 100%;
     height: auto;
 }
-
 @media (max-width: 600px) {
     main {
         width: 100%;
@@ -735,11 +709,6 @@ main {
         min-width: 90px;
     }
 }
-
-
-/* =========================================
-   GUIA DE UTILIZAÇÃO - PONTE LIBRAS
-   ========================================= */
 
 .guia-uso {
     margin-top: 20px;
@@ -807,10 +776,6 @@ main {
     line-height: 1.7;
 }
 
-/* =========================================
-   MELHORIAS VISUAIS
-   ========================================= */
-
 .logo-icone {
     display: inline-flex;
     align-items: center;
@@ -851,7 +816,6 @@ input:focus-visible {
     outline-offset: 3px;
 }
 
-/* Link de acessibilidade */
 .pular-conteudo {
     position: absolute;
     top: -100px;
@@ -868,10 +832,6 @@ input:focus-visible {
 .pular-conteudo:focus {
     top: 12px;
 }
-
-/* =========================================
-   RESPONSIVIDADE
-   ========================================= */
 
 @media (max-width: 900px) {
     .guia-grade {
@@ -909,12 +869,6 @@ input:focus-visible {
         transform: none;
     }
 }
-
-
-/* ================================
-   PÁGINAS DE ALFABETO E ESTATÍSTICAS
-   (mesmo padrão visual do index)
-   ================================ */
 
 .secao-espaco {
     margin-top: 20px;
@@ -979,16 +933,200 @@ input:focus-visible {
     font-size: 16px;
     line-height: 1.6;
 }
-
-/* logo (mão em Libras) */
 .logo-icone svg {
     width: 28px;
     height: 28px;
     display: block;
 }
 
-/* fundo branco das imagens das mãos se mistura com o cartão */
 .cartao-letra img,
 .painel-letra img {
     mix-blend-mode: multiply;
+}
+.navegacao {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.navegacao a {
+    color: #d5dcea;
+    text-decoration: none;
+    padding: 12px 14px;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.navegacao a:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.navegacao a.ativo {
+    background: var(--azul);
+    color: #fff;
+}
+.logo-icone img {
+    width: 60px;
+    height: auto;
+    object-fit: contain;
+}
+.camera-secao .cartao-topo {
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.camera-secao .cartao-topo h2 {
+    min-width: 0;
+    flex: 1 1 220px;
+}
+
+.camera-grade {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 20px;
+    align-items: start;
+}
+
+.camera-grade > div {
+    min-width: 0;
+}
+
+.area-camera {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    min-height: 220px;
+    max-height: 420px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.area-camera img,
+#feedVideoLibras {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.camera-secao .digitar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.camera-secao .digitar input {
+    flex: 1 1 160px;
+    min-width: 0;
+}
+
+.camera-secao .botoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.camera-secao .botoes button {
+    flex: 1 1 120px;
+    min-width: 0;
+}
+
+.camera-secao .microfone {
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .camera-grade {
+        grid-template-columns: 1fr;
+    }
+
+    .area-camera {
+        aspect-ratio: 16 / 10;
+        min-height: 200px;
+        max-height: 320px;
+    }
+}
+
+@media (max-width: 540px) {
+    .camera-secao {
+        padding: 16px;
+    }
+
+    .area-camera {
+        aspect-ratio: 4 / 3;
+        min-height: 180px;
+        max-height: 260px;
+    }
+
+    .camera-secao .digitar button,
+    .camera-secao .botoes button {
+        flex: 1 1 100%;
+    }
+}
+.camera-secao h3 {
+    margin-top: 18px;
+    margin-bottom: 8px;
+}
+
+.camera-secao .digitar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 12px;
+    margin-bottom: 14px;
+}
+
+.camera-secao .digitar input {
+    flex: 1 1 180px;
+    min-width: 0;
+    padding: 12px 14px;
+}
+
+.camera-secao .digitar button {
+    padding: 12px 18px;
+    white-space: nowrap;
+}
+
+.camera-secao .botoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.camera-secao .botoes button {
+    flex: 1 1 140px;
+    min-width: 0;
+    padding: 12px 16px;
+}
+
+#infoTreinoLibras {
+    margin-top: 12px;
+    line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+    .camera-secao .digitar {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .camera-secao .digitar input,
+    .camera-secao .digitar button {
+        width: 100%;
+        flex: none;
+    }
+
+    .camera-secao .botoes {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .camera-secao .botoes button {
+        width: 100%;
+        flex: none;
+    }
 }

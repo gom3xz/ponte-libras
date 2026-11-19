@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Ponte Libras: aprenda a soletrar palavras com o alfabeto em Libras.">
-    <title>Ponte Libras | Alfabeto em Libras</title>
+    <title>Signs | Alfabeto em Libras</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -14,22 +14,12 @@
     </a>
 
     <!-- MENU LATERAL -->
-    <aside class="menu">
+    <div class="menu">
         <div class="logo">
-            <span class="logo-icone" aria-hidden="true">
-                <svg viewBox="0 0 24 24" focusable="false">
-                    <g stroke="#fff" stroke-linecap="round" stroke-width="2.6" fill="none">
-                        <path d="M9 11 V5"/>
-                        <path d="M12 10.5 V3.5"/>
-                        <path d="M15 11 V4.5"/>
-                        <path d="M18 12 V7"/>
-                        <path d="M8.5 15.5 L5 12"/>
-                    </g>
-                    <path d="M7.5 11.5 h11.8 v4 a5 5 0 0 1 -5 5 h-1.8 a5 5 0 0 1 -5 -5 z" fill="#fff"/>
-                    <path d="M2.5 6 q-1 2 0 4 M21.5 2.5 q1.2 2 0 4" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round" opacity=".8"/>
-                </svg>
-            </span>
-            <span>Ponte<b>Libras</b></span>
+            <div class="logo-icone">
+                <img src="./img/alfabeto/LogoSigns.png" alt="Logo Signs">
+            </div>
+            <a href="index.html" style="color: inherit; text-decoration: none;"><div><b>Signs</b></div></a>
         </div>
 
         <p class="logo-texto">
@@ -37,19 +27,19 @@
             a comunicação mais acessível.
         </p>
 
-        <nav aria-label="Navegação principal">
+        <div class="navegacao">
             <a href="index.html">Tradução ao vivo</a>
             <a href="alfabeto.html" class="ativo" aria-current="page">
                 Alfabeto em Libras
             </a>
             <a href="estatisticas.html">Estatísticas</a>
-        </nav>
+        </div>
 
         <div class="status">
-            <span class="bolinha" aria-hidden="true"></span>
+            <div class="bolinha"></div>
             Plataforma de comunicação
         </div>
-    </aside>
+    </div>
 
     <!-- CONTEÚDO PRINCIPAL -->
     <main id="conteudo-principal" tabindex="-1">
@@ -59,16 +49,15 @@
                 <h1>Alfabeto em Libras</h1>
                 <p>Digite uma palavra e veja, letra por letra, como soletrar.</p>
             </div>
-            <span class="selo">Soletração manual</span>
         </header>
 
         <!-- SOLETRAR + LETRA EM DESTAQUE -->
-        <section class="cartoes" aria-label="Soletração de palavras">
+        <div class="cartoes">
 
-            <article class="cartao">
+            <div class="cartao">
                 <div class="cartao-topo">
                     <h2>Soletrar uma palavra</h2>
-                    <span class="ao-vivo verde">Letra por letra</span>
+                    <div class="ao-vivo verde">Letra por letra</div>
                 </div>
 
                 <p class="dica">
@@ -82,7 +71,6 @@
                     <input
                         type="text"
                         id="palavraSoletrar"
-                        aria-label="Palavra para soletrar"
                         placeholder="Ex.: MARIA"
                         maxlength="20"
                     >
@@ -96,33 +84,29 @@
                 </div>
 
                 <h3>Letra atual</h3>
-                <p
-                    id="letraAtual"
-                    class="detectado"
-                    aria-live="polite"
-                >
+                <p id="letraAtual" class="detectado">
                     A letra da vez aparece aqui.
                 </p>
-            </article>
+            </div>
 
-            <article class="cartao">
+            <div class="cartao">
                 <div class="cartao-topo">
                     <h2>Sinal em destaque</h2>
-                    <span class="ao-vivo azul">Alfabeto manual</span>
+                    <div class="ao-vivo azul">Alfabeto manual</div>
                 </div>
 
-                <div class="painel-letra" aria-live="polite">
+                <div class="painel-letra">
                     <img id="painelImg" src="" alt="" hidden>
                     <strong id="painelLetra">?</strong>
                     <p id="painelTexto">
                         Clique em uma letra para ver o sinal em Libras.
                     </p>
                 </div>
-            </article>
-        </section>
+            </div>
+        </div>
 
         <!-- ALFABETO COMPLETO -->
-        <section class="cartao secao-espaco" aria-labelledby="titulo-alfabeto">
+        <div class="cartao secao-espaco">
             <div class="cartao-topo">
                 <h2 id="titulo-alfabeto">Alfabeto completo</h2>
             </div>
@@ -134,7 +118,7 @@
             <div id="grade" class="grade-alfabeto">
                 <!-- os cartões são criados pelo JavaScript -->
             </div>
-        </section>
+        </div>
 
     </main>
 

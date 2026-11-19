@@ -78,12 +78,14 @@ def extract_features(landmarks):
 def generate_frames():
     global camera_running, current_label, cap, last_landmarks
 
-    if not os.path.exists(CLASSIFIER_PATH):
-        raise FileNotFoundError("modelo_libras.joblib não encontrado na pasta do projeto.")
     if not os.path.exists(MODEL_PATH):
         raise FileNotFoundError("hand_landmarker.task não encontrado na pasta do projeto.")
 
-    classifier = joblib.load(CLASSIFIER_PATH)
+    if os.path.exists(CLASSIFIER_PATH):
+        classifier = joblib.load(CLASSIFIER_PATH)
+    else:
+        classifier = None
+
     base_options = python.BaseOptions(model_asset_path=MODEL_PATH)
     options = vision.HandLandmarkerOptions(
         base_options=base_options,
@@ -118,19 +120,22 @@ def generate_frames():
                 with lock:
                     last_landmarks = hand_landmarks
                 draw_hand(flipped, hand_landmarks)
-                features = extract_features(hand_landmarks)
 
-                probs = classifier.predict_proba([features])[0]
-                best_idx = probs.argmax()
-                confidence = probs[best_idx]
-                label = classifier.classes_[best_idx]
+                if classifier is not None:
+                    features = extract_features(hand_landmarks)
+                    probs = classifier.predict_proba([features])[0]
+                    best_idx = probs.argmax()
+                    confidence = probs[best_idx]
+                    label = classifier.classes_[best_idx]
 
-                if confidence >= CONFIDENCE_THRESHOLD:
-                    recent_preds.append(label)
-                    detected_text = max(set(recent_preds), key=recent_preds.count)
+                    if confidence >= CONFIDENCE_THRESHOLD:
+                        recent_preds.append(label)
+                        detected_text = max(set(recent_preds), key=recent_preds.count)
+                    else:
+                        recent_preds.clear()
+                        detected_text = "Incerto"
                 else:
-                    recent_preds.clear()
-                    detected_text = "Incerto"
+                    detected_text = "Modelo não treinado"
             else:
                 recent_preds.clear()
                 with lock:

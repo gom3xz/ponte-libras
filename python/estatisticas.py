@@ -1,8 +1,3 @@
-# ======================================================
-# PONTE LIBRAS - Estatísticas da conversa (Python no navegador, PyScript)
-# Lê a conversa salva pelo js/script.js e calcula números e gráfico.
-# ======================================================
-
 import json
 import math
 import statistics

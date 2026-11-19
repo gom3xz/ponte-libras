@@ -1,10 +1,3 @@
-// ======================================================
-// PONTE LIBRAS - script da tela de tradução ao vivo
-// ======================================================
-
-// ---------- VARIÁVEIS ----------
-
-// frases que a pessoa que não fala pode usar com 1 toque
 const frases = [
     { texto: 'Olá, tudo bem?' },
     { texto: 'Sim' },
@@ -20,14 +13,16 @@ const frases = [
 
 const alfabeto = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
 
-let palavra = '';          // palavra que está sendo soletrada
+let palavra = '';
 let totalMensagens = 0;
 let totalSinaliza = 0;
 let totalOuvinte = 0;
 let totalPalavras = 0;
 let ouvindo = false;
+let reconhecimento = null;
 
-// histórico da conversa (o Python da página de estatísticas lê isto)
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
 let historico = [];
 try {
     historico = JSON.parse(localStorage.getItem('ponteLibrasHistorico') || '[]');
@@ -43,10 +38,6 @@ function salvarHistorico() {
     }
 }
 
-
-// ---------- MONTAR A TELA ----------
-
-// cria os botões de frases rápidas usando for
 function criarFrases() {
     const caixa = document.getElementById('frases');
 
@@ -63,7 +54,6 @@ function criarFrases() {
     }
 }
 
-// cria os botões de A até Z
 function criarLetras() {
     const caixa = document.getElementById('letras');
 
@@ -82,16 +72,12 @@ function criarLetras() {
     }
 }
 
-
-// ---------- SOLETRAR ----------
-
 function adicionarLetra(letra) {
     palavra = palavra + letra;
     mostrarPalavra();
 }
 
 function adicionarEspaco() {
-    // não deixa começar com espaço nem colocar dois seguidos
     if (palavra !== '' && palavra[palavra.length - 1] !== ' ') {
         palavra = palavra + ' ';
         mostrarPalavra();
@@ -124,10 +110,6 @@ function enviarPalavra() {
     mostrarPalavra();
 }
 
-
-// ---------- VOZ ----------
-
-// o navegador lê o texto em voz alta (português do Brasil)
 function falar(texto) {
     if (!('speechSynthesis' in window)) {
         console.log('Este navegador não fala em voz alta.');
@@ -141,42 +123,67 @@ function falar(texto) {
     window.speechSynthesis.speak(fala);
 }
 
-// o navegador escuta o microfone e transforma a fala em texto
 function ouvir() {
-    const Reconhecimento = window.SpeechRecognition || window.webkitSpeechRecognition;
-
-    if (!Reconhecimento) {
-        alert('Seu navegador não reconhece voz. Use o Google Chrome ou digite o texto.');
+    if (!SpeechRecognition) {
+        alert('Seu navegador não suporta reconhecimento de voz. Use o Google Chrome ou Edge.');
         return;
     }
 
-    if (ouvindo) {
+    if (ouvindo && reconhecimento) {
+        reconhecimento.stop();
         return;
     }
 
-    const microfone = new Reconhecimento();
-    microfone.lang = 'pt-BR';
+    reconhecimento = new SpeechRecognition();
+    reconhecimento.lang = 'pt-BR';
+    reconhecimento.interimResults = true;
+    reconhecimento.continuous = false;
 
-    microfone.onstart = function () {
+    const saida = document.getElementById('ultimoTextoOuvinte');
+
+    reconhecimento.onstart = function () {
         ouvindo = true;
         mudarMicrofone(true);
+        if (saida) {
+            saida.innerText = 'Ouvindo...';
+        }
     };
 
-    microfone.onresult = function (evento) {
-        const texto = evento.results[0][0].transcript;
-        mensagemDoOuvinte(texto);
+    reconhecimento.onresult = function (evento) {
+        let transcricao = '';
+        let finalizou = false;
+
+        for (let i = evento.resultIndex; i < evento.results.length; i++) {
+            transcricao += evento.results[i][0].transcript;
+            if (evento.results[i].isFinal) {
+                finalizou = true;
+            }
+        }
+
+        const textoLimpo = transcricao.trim();
+        if (saida && textoLimpo) {
+            saida.innerText = textoLimpo;
+        }
+
+        if (finalizou && textoLimpo) {
+            mensagemDoOuvinte(textoLimpo);
+        }
     };
 
-    microfone.onerror = function () {
-        alert('Não consegui ouvir. Verifique se o microfone está liberado.');
+    reconhecimento.onerror = function (evento) {
+        if (saida) {
+            saida.innerText = evento.error === 'not-allowed'
+                ? 'Permissão do microfone negada no navegador.'
+                : 'Não consegui ouvir. Verifique se o microfone está liberado.';
+        }
     };
 
-    microfone.onend = function () {
+    reconhecimento.onend = function () {
         ouvindo = false;
         mudarMicrofone(false);
     };
 
-    microfone.start();
+    reconhecimento.start();
 }
 
 function mudarMicrofone(ligado) {
@@ -184,7 +191,7 @@ function mudarMicrofone(ligado) {
     const onda = document.getElementById('onda');
 
     if (ligado) {
-        botao.innerText = 'Ouvindo...';
+        botao.innerText = 'Parar de ouvir';
         botao.classList.add('gravando');
         onda.classList.add('mexendo');
     } else {
@@ -207,12 +214,9 @@ function enviarTextoOuvinte() {
     campo.value = '';
 }
 
-
-// ---------- CONVERSA ----------
-
 function mensagemDaPessoaQueSinaliza(texto) {
     adicionarMensagem('sinaliza', texto);
-    falar(texto);   // a frase vira voz para o ouvinte escutar
+    falar(texto);
 }
 
 function mensagemDoOuvinte(texto) {
@@ -223,7 +227,6 @@ function mensagemDoOuvinte(texto) {
 function adicionarMensagem(quem, texto) {
     const lista = document.getElementById('mensagens');
 
-    // tira o aviso "A conversa vai aparecer aqui"
     if (totalMensagens === 0) {
         lista.innerHTML = '';
     }
@@ -253,7 +256,6 @@ function adicionarMensagem(quem, texto) {
         '<p></p>' +
         '<button class="ouvir-de-novo" aria-label="Ouvir a mensagem de novo">Ouvir</button>';
 
-    // innerText no texto para ninguém conseguir colocar HTML na conversa
     mensagem.querySelector('p').innerText = texto;
     mensagem.querySelector('button').onclick = function () {
         falar(texto);
@@ -270,7 +272,6 @@ function adicionarMensagem(quem, texto) {
     atualizarNumeros();
 }
 
-// conta as palavras de um texto usando while
 function contarPalavras(texto) {
     const partes = texto.trim().split(' ');
     let contador = 0;
@@ -321,13 +322,9 @@ function limparConversa() {
     }
 }
 
-
-// ---------- INÍCIO ----------
-
 criarFrases();
 criarLetras();
 
-// enviar com a tecla Enter no campo de texto
 document.getElementById('textoOuvinte').addEventListener('keydown', function (evento) {
     if (evento.key === 'Enter') {
         enviarTextoOuvinte();
