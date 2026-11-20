@@ -1,4 +1,4 @@
-# Ponte Libras
+# Signs
 
 Site para ajudar pessoas que não conseguem se comunicar verbalmente a conversar com quem ouve.
 
@@ -49,13 +49,3 @@ Sem a imagem, o site mostra só a letra. Cite a fonte das imagens aqui se não f
 | Lucas | Python (estatísticas) |
 | Mahdi | Matemática (cálculos e testes de acerto) |
 
-## Publicar no GitHub Pages
-
-```
-git init
-git add .
-git commit -m "Ponte Libras"
-git remote add origin LINK_DO_REPOSITORIO
-git push -u origin main
-```
-Depois: Settings → Pages → escolher a branch main.

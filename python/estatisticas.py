@@ -179,10 +179,6 @@ def desenhar_modelo(cobertura, a, b):
     return svg
 
 
-# ======================================================
-# ANÁLISE MATEMÁTICA (roteiro da função logarítmica)
-# Tudo calculado em Python para conferir as contas feitas à mão
-# ======================================================
 
 def montar_analise(a, b, r2, n, cobertura):
     f1 = f(1, a, b)
